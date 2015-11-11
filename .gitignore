@@ -6,6 +6,7 @@
 /build
 /captures
 /app/lint.xml
+/vector_graphics
 #built application files
 *.apk
 *.ap_
