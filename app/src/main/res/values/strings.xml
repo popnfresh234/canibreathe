@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">CanIBreathe</string>
+    <string name="action_settings">Settings</string>
+
+    //Activity Titles
+    <string name="title_activity_settings">Settings</string>
+
+
+    //Shared prefs
+    <string name="pref_key_county" translatable="false">county</string>
+    <string name="pref_county_label" translatable="false">County or City</string>
+
+    <string name="pref_county_label_yilan_county">YiLan County</string>
+    <string name="pref_county_label_hualian_county">HuaLian County</string>
+    <string name="pref_county_label_jinmen_county">JinMen County</string>
+    <string name="pref_county_label_nantou_county">NanTou County</string>
+    <string name="pref_county_label_pingdong_county">PingDong County</string>
+    <string name="pref_county_label_miaoli_county">MiaoLi County</string>
+    <string name="pref_county_label_taouyuan_city">TaoYuan City</string>
+    <string name="pref_county_label_kaohsiung_city">Kaohsiung City</string>
+    <string name="pref_county_label_keelung_city">Keelung City</string>
+    <string name="pref_county_label_lianjiang_county">LianJiang County</string>
+    <string name="pref_county_label_yunlin_county">Yunlin County</string>
+    <string name="pref_county_label_newtaipei_city">New Taipei City</string>
+    <string name="pref_county_label_hsinchu_city">Hsinchu City</string>
+    <string name="pref_county_label_hsinchu_county">Hsinchu County</string>
+    <string name="pref_county_label_chiayi_city">Chiayi City</string>
+    <string name="pref_county_label_chiayi_county">Chiayi County</string>
+    <string name="pref_county_label_changhua_county">Changua County</string>
+    <string name="pref_county_label_taichung_city">Taichung City</string>
+    <string name="pref_county_label_taipei_city">Taipei City</string>
+    <string name="pref_county_label_taidong_county">Taidong County</string>
+    <string name="pref_county_label_tainan_city">Tainan City</string>
+    <string name="pref_county_label_penghu_county">Penghu County</string>
+
+    <string name="pref_county_yilan_county">宜蘭縣</string>
+    <string name="pref_county_hualian_county">花蓮縣</string>
+    <string name="pref_county_jinmen_county">金門縣</string>
+    <string name="pref_county_nantou_county">南投縣</string>
+    <string name="pref_county_pingdong_county">屏東縣</string>
+    <string name="pref_county_miaoli_county">苗栗縣</string>
+    <string name="pref_county_taouyuan_city">桃園市</string>
+    <string name="pref_county_kaohsiung_city">高雄市</string>
+    <string name="pref_county_keelung_city">基隆市</string>
+    <string name="pref_county_lianjiang_county">連江縣</string>
+    <string name="pref_county_yunlin_county">雲林縣</string>
+    <string name="pref_county_newtaipei_city">新北市</string>
+    <string name="pref_county_hsinchu_city">新竹市</string>
+    <string name="pref_county_hsinchu_county">新竹縣</string>
+    <string name="pref_county_chiayi_city">嘉義市</string>
+    <string name="pref_county_chiayi_county">嘉義縣</string>
+    <string name="pref_county_changhua_county">彰化縣</string>
+    <string name="pref_county_taichung_city">臺中市</string>
+    <string name="pref_county_taipei_city">臺北市</string>
+    <string name="pref_county_taidong_county">臺東縣</string>
+    <string name="pref_county_tainan_city">臺南市</string>
+    <string name="pref_county_penghu_county">澎湖縣</string>
+
+
+</resources>
