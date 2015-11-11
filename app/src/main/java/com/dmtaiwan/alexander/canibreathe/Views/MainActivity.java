@@ -6,8 +6,9 @@ import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,7 +17,9 @@ import com.dmtaiwan.alexander.canibreathe.Models.AQStation;
 import com.dmtaiwan.alexander.canibreathe.Presenters.MainPresenter;
 import com.dmtaiwan.alexander.canibreathe.Presenters.MainPresenterImpl;
 import com.dmtaiwan.alexander.canibreathe.R;
+import com.dmtaiwan.alexander.canibreathe.Utilities.AQStationAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -26,6 +29,13 @@ public class MainActivity extends AppCompatActivity implements MainView{
 
     private MainPresenter mPresenter;
     private List<AQStation> mAQStationList;
+    private AQStationAdapter mAdapter;
+
+    @Bind(R.id.empty_view)
+    View mEmptyView;
+
+    @Bind(R.id.aq_recycler_view)
+    RecyclerView mRecyclerView;
 
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
@@ -39,6 +49,15 @@ public class MainActivity extends AppCompatActivity implements MainView{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        //Set Layout Manager
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(llm);
+        mAdapter = new AQStationAdapter(this, mEmptyView);
+        mRecyclerView.setAdapter(mAdapter);
+
+        //ActionBar
         setSupportActionBar(mToolbar);
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,14 +98,17 @@ public class MainActivity extends AppCompatActivity implements MainView{
 
     @Override
     public void onDataReturned(List<AQStation> aqStations) {
-        mAQStationList = aqStations;
-        for (int i = 0; i < mAQStationList.size(); i++) {
-            AQStation aqStation = mAQStationList.get(i);
-            String county = PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.pref_key_county), getString(R.string.pref_county_taipei_city));
-            if (aqStation.getCounty().equals(county)) {
-                Log.i("SITE NAME", aqStation.getSiteName());
-            }
+        List<AQStation> sortedStations = new ArrayList<>();
+        String county = PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.pref_key_county), getString(R.string.pref_county_taipei_city));
 
+        for (AQStation aqStation : aqStations) {
+            if (aqStation.getCounty().equals(county)) {
+                sortedStations.add(aqStation);
+            }
+        }
+
+        if (mAdapter != null) {
+            mAdapter.udpateData(sortedStations);
         }
     }
 }
