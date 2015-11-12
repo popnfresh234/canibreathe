@@ -7,30 +7,41 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="16dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
+
+
+
+
+        <TextView
+            android:id="@+id/aq_station_name"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:gravity="center"
+            android:background="@color/bgGray300"
+            tools:text="stationName" />
+
+        <TextView
+            android:id="@+id/aq_wind_speed"
+            android:layout_below="@id/aq_station_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            tools:text="12km/h"/>
 
         <TextView
             android:id="@+id/pm25"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_margin="5dp"
-            android:textSize="@dimen/aq_station_font_large"
+            android:background="@drawable/circle_bg_green"
+            android:gravity="center"
             android:textColor="@android:color/white"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:background="@drawable/circle_bg"/>
+            android:textSize="@dimen/aq_station_font_large"
+            android:textStyle="bold" />
 
-        <TextView
-            android:gravity="center"
-            android:id="@+id/aq_station_name"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            tools:text="stationName" />
-
-    </LinearLayout>
+    </RelativeLayout>
 
 
 </android.support.v7.widget.CardView>

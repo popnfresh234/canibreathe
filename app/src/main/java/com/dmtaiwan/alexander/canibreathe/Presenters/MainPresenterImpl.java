@@ -53,6 +53,7 @@ public class MainPresenterImpl implements MainPresenter, MainInteractorImpl.Main
                 aqStation.setCounty(station.getString("County"));
                 aqStation.setPM25(station.getString("PM2.5"));
                 aqStation.setPublishTime(station.getString("PublishTime"));
+                aqStation.setWindSpeed(station.getString("WindSpeed"));
                 aqStations.add(aqStation);
             }
         } catch (JSONException e) {

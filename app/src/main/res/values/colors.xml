@@ -3,4 +3,19 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!--Status Colors-->
+    <color name="statusGreen">#4caf50</color>
+    <color name="statusYellow">#ffeb3b</color>
+    <color name="statusRed">#f44336</color>
+    <color name="statusPurple">#9c27b0</color>
+
+    <!--Text Colors-->
+    <color name="textWhite">#ffffff</color>
+    <color name="textDarkBg87">#dd000000</color>
+    <color name="textDarkBg54">#8a000000</color>
+    <color name="textLightBg70">#b3ffffff</color>
+
+    <!--Background Colors-->
+    <color name="bgGray300">#bdbdbd</color>
 </resources>

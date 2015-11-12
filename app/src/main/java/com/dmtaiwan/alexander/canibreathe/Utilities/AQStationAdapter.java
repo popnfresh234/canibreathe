@@ -42,6 +42,7 @@ public class AQStationAdapter extends RecyclerView.Adapter<AQStationAdapter.View
         AQStation aqStation = mStationList.get(position);
         holder.mPm25Text.setText(aqStation.getPM25());
         holder.mStationName.setText(aqStation.getSiteName());
+        holder.mWindSpeed.setText(aqStation.getWindSpeed() + " m/s");
     }
 
     @Override
@@ -60,6 +61,9 @@ public class AQStationAdapter extends RecyclerView.Adapter<AQStationAdapter.View
 
         @Bind(R.id.aq_station_name)
         TextView mStationName;
+
+        @Bind(R.id.aq_wind_speed)
+        TextView mWindSpeed;
 
 
         public ViewHolder(View itemView) {
