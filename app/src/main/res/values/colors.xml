@@ -7,6 +7,7 @@
     <!--Status Colors-->
     <color name="statusGreen">#4caf50</color>
     <color name="statusYellow">#ffeb3b</color>
+    <color name="statusOrange">#ff9800</color>
     <color name="statusRed">#f44336</color>
     <color name="statusPurple">#9c27b0</color>
 

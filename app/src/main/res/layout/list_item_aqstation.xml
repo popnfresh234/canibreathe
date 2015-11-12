@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="80dp"
     android:layout_marginBottom="16dp">
 
     <RelativeLayout
@@ -12,23 +12,56 @@
         android:layout_height="wrap_content">
 
 
-
-
-        <TextView
-            android:id="@+id/aq_station_name"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:gravity="center"
-            android:background="@color/bgGray300"
-            tools:text="stationName" />
-
-        <TextView
-            android:id="@+id/aq_wind_speed"
-            android:layout_below="@id/aq_station_name"
+        <LinearLayout
+            android:id="@+id/aq_list_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="right"
-            tools:text="12km/h"/>
+            android:background="@color/bgGray300"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/aq_station_name"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="2"
+                android:paddingLeft="16dp"
+                android:gravity="center"
+                android:textColor="@color/textDarkBg87"
+                android:textSize="@dimen/aq_station_font_medium"
+                tools:text="SongShan" />
+
+            <TextView
+                android:id="@+id/aq_station_time"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:gravity="center|right"
+                android:textColor="@color/textDarkBg54"
+                android:paddingRight="16dp"
+                tools:text="12:00" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_below="@id/aq_list_header"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <android.support.v4.widget.Space
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="2"/>
+
+            <TextView
+                android:id="@+id/aq_wind_speed"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center|right"
+                android:paddingRight="16dp"
+                tools:text="1.2 m/s"/>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/pm25"

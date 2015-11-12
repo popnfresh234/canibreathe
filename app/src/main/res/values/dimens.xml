@@ -7,4 +7,6 @@
 
     <!--TextSizes-->
     <dimen name="aq_station_font_large">28sp</dimen>
+    <dimen name="aq_station_font_medium">20sp</dimen>
+    <dimen name="aq_station_font_small">12sp</dimen>
 </resources>

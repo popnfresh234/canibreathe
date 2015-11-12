@@ -40,9 +40,11 @@ public class AQStationAdapter extends RecyclerView.Adapter<AQStationAdapter.View
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         AQStation aqStation = mStationList.get(position);
-        holder.mPm25Text.setText(aqStation.getPM25());
+        holder.mPm25Text.setText(Utilities.aqiCalc(aqStation.getPM25()));
+        holder.mPm25Text.setBackground(Utilities.getAqiBackground(Utilities.aqiCalc(aqStation.getPM25()), mContext));
         holder.mStationName.setText(aqStation.getSiteName());
-        holder.mWindSpeed.setText(aqStation.getWindSpeed() + " m/s");
+        holder.mWindSpeed.setText(Utilities.formatWindSpeed(aqStation.getWindSpeed()));
+        holder.mTime.setText(Utilities.parseTime(aqStation.getPublishTime()));
     }
 
     @Override
@@ -64,6 +66,9 @@ public class AQStationAdapter extends RecyclerView.Adapter<AQStationAdapter.View
 
         @Bind(R.id.aq_wind_speed)
         TextView mWindSpeed;
+
+        @Bind(R.id.aq_station_time)
+        TextView mTime;
 
 
         public ViewHolder(View itemView) {
