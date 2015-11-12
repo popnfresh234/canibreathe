@@ -1,43 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="16dp">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/aq_station_background_image"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:src="@drawable/aq_poor_jpg" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/pm25"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="5dp"
+            android:textSize="@dimen/aq_station_font_large"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@drawable/circle_bg"/>
+
+        <TextView
+            android:gravity="center"
             android:id="@+id/aq_station_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/aq_station_background_image"
-            android:layout_centerHorizontal="true"
-            android:textSize="@dimen/aq_station_font_large"
-            tools:text="AQ Station Name" />
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            tools:text="stationName" />
 
+    </LinearLayout>
 
-        <TextView
-            android:id="@+id/aq_pm25"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/aq_station_name"
-            android:layout_centerHorizontal="true"
-            android:textSize="@dimen/aq_station_font_large"
-            tools:text="AQI: 150" />
-
-
-    </RelativeLayout>
 
 </android.support.v7.widget.CardView>

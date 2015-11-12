@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dmtaiwan.alexander.canibreathe.Models.AQStation;
@@ -41,9 +40,8 @@ public class AQStationAdapter extends RecyclerView.Adapter<AQStationAdapter.View
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         AQStation aqStation = mStationList.get(position);
-        holder.mStationImage.setImageResource(R.drawable.aq_poor);
+        holder.mPm25Text.setText(aqStation.getPM25());
         holder.mStationName.setText(aqStation.getSiteName());
-        holder.mAqi.setText(aqStation.getPM25());
     }
 
     @Override
@@ -57,14 +55,12 @@ public class AQStationAdapter extends RecyclerView.Adapter<AQStationAdapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @Bind(R.id.aq_station_background_image)
-        ImageView mStationImage;
+        @Bind(R.id.pm25)
+        TextView mPm25Text;
 
         @Bind(R.id.aq_station_name)
         TextView mStationName;
 
-        @Bind(R.id.aq_pm25)
-        TextView mAqi;
 
         public ViewHolder(View itemView) {
             super(itemView);
