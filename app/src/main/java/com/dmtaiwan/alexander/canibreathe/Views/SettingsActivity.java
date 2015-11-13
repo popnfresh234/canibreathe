@@ -7,6 +7,8 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 
+import com.dmtaiwan.alexander.canibreathe.Bus.EventBus;
+import com.dmtaiwan.alexander.canibreathe.Bus.SettingsEvent;
 import com.dmtaiwan.alexander.canibreathe.R;
 
 
@@ -51,6 +53,8 @@ public class SettingsActivity extends PreferenceActivity implements Preference.O
             //Language has been changed
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
             String language = prefs.getString(getString(R.string.pref_key_county), getString(R.string.pref_county_taipei_city));
+            SettingsEvent event = new SettingsEvent();
+            EventBus.getInstance().post(event);
         }
     }
 

@@ -1,10 +1,12 @@
 package com.dmtaiwan.alexander.canibreathe.Presenters;
 
 import android.content.Context;
+import android.preference.PreferenceManager;
 
 import com.dmtaiwan.alexander.canibreathe.Models.AQStation;
 import com.dmtaiwan.alexander.canibreathe.Models.MainInteractor;
 import com.dmtaiwan.alexander.canibreathe.Models.MainInteractorImpl;
+import com.dmtaiwan.alexander.canibreathe.R;
 import com.dmtaiwan.alexander.canibreathe.Views.MainView;
 
 import org.json.JSONArray;
@@ -39,8 +41,11 @@ public class MainPresenterImpl implements MainPresenter, MainInteractorImpl.Main
     @Override
     public void onResult(String result) {
         List<AQStation> AQStationList =  parseResult(result);
-        mView.onDataReturned(AQStationList);
+        List<AQStation> sortedAQStationList = sortStations(AQStationList);
+        mView.onDataReturned(sortedAQStationList);
     }
+
+
 
     private List<AQStation> parseResult(String result) {
         List<AQStation> aqStations = new ArrayList<>();
@@ -60,5 +65,17 @@ public class MainPresenterImpl implements MainPresenter, MainInteractorImpl.Main
             e.printStackTrace();
         }
         return aqStations;
+    }
+
+    private List<AQStation> sortStations(List<AQStation> aqStationList) {
+        List<AQStation> sortedStations = new ArrayList<>();
+        String county = PreferenceManager.getDefaultSharedPreferences(mContext).getString(mContext.getString(R.string.pref_key_county), mContext.getString(R.string.pref_county_taipei_city));
+
+        for (AQStation aqStation : aqStationList) {
+            if (aqStation.getCounty().equals(county)) {
+                sortedStations.add(aqStation);
+            }
+        }
+        return sortedStations;
     }
 }

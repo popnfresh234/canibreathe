@@ -24,11 +24,13 @@ public class AQStationAdapter extends RecyclerView.Adapter<AQStationAdapter.View
     private static final String LOG_TAG = AQStationAdapter.class.getSimpleName();
     private Context mContext;
     final private View mEmptyView;
+    private RecyclerClickListener mListener;
     private List<AQStation> mStationList;
 
-    public AQStationAdapter(Context context, View emptyView) {
+    public AQStationAdapter(Context context, View emptyView, RecyclerClickListener listener) {
         this.mContext = context;
         this.mEmptyView = emptyView;
+        this.mListener = listener;
     }
 
     @Override
@@ -40,8 +42,10 @@ public class AQStationAdapter extends RecyclerView.Adapter<AQStationAdapter.View
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         AQStation aqStation = mStationList.get(position);
-        holder.mPm25Text.setText(Utilities.aqiCalc(aqStation.getPM25()));
-        holder.mPm25Text.setBackground(Utilities.getAqiBackground(Utilities.aqiCalc(aqStation.getPM25()), mContext));
+        String pm25String = Utilities.aqiCalc(aqStation.getPM25());
+        holder.mPm25Text.setText(pm25String);
+        holder.mPm25Text.setTextColor(Utilities.getTextColor(pm25String, mContext));
+        holder.mPm25Text.setBackground(Utilities.getAqiBackground(pm25String, mContext));
         holder.mStationName.setText(aqStation.getSiteName());
         holder.mWindSpeed.setText(Utilities.formatWindSpeed(aqStation.getWindSpeed()));
         holder.mTime.setText(Utilities.parseTime(aqStation.getPublishTime()));
@@ -79,7 +83,7 @@ public class AQStationAdapter extends RecyclerView.Adapter<AQStationAdapter.View
 
         @Override
         public void onClick(View v) {
-
+            mListener.onRecyclerClick();
         }
     }
 
@@ -88,5 +92,9 @@ public class AQStationAdapter extends RecyclerView.Adapter<AQStationAdapter.View
         mStationList = stationList;
         notifyDataSetChanged();
         mEmptyView.setVisibility(mStationList.size() == 0 ? View.VISIBLE : View.GONE);
+    }
+
+    public interface RecyclerClickListener {
+        void onRecyclerClick();
     }
 }

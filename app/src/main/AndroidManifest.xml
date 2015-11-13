@@ -21,6 +21,10 @@
             </intent-filter>
         </activity>
 
+        <!--Details Activity-->
+        <activity android:name=".Views.DetailActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- SettingsActivity -->
         <activity
             android:name=".Views.SettingsActivity"
@@ -28,7 +32,7 @@
             android:parentActivityName=".Views.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.dmtaiwan.alexander.iloveyoubike.Views.MainActivity" />
+                android:value="com.dmtaiwan.alexander.canibreathe.Views.MainActivity" />
         </activity>
 
 

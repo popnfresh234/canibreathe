@@ -25,8 +25,17 @@ public class MainInteractorImpl implements MainInteractor {
         this.mContext = context;
     }
 
+
+
     @Override
     public void fetchAQData() {
+
+        //If there's stored data, load as default
+        if (Utilities.doesFileExist(mContext)) {
+            String response = Utilities.readFromFile(mContext);
+            mListener.onResult(response);
+        }
+
         if (Utilities.isNetworkAvailable(mContext)) {
             AQService aqService = new AQService();
             Observable<HttpResponse> httpResponseObservable = aqService.requestAQStations();
@@ -41,7 +50,7 @@ public class MainInteractorImpl implements MainInteractor {
             httpResponseObservable.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(subscriber);
-        }else{
+        } else {
             //No network
             mListener.onResult("FAIL");
         }
@@ -53,7 +62,10 @@ public class MainInteractorImpl implements MainInteractor {
 
         //If http response was good, get the json string
         if (responseCode == HttpURLConnection.HTTP_OK) {
+            Utilities.writeToFile(httpResponse.getResponse(), mContext);
             return httpResponse.getResponse();
+        } else if (Utilities.doesFileExist(mContext)) {
+            return Utilities.readFromFile(mContext);
         } else {
             return httpResponse.getResponse();
         }

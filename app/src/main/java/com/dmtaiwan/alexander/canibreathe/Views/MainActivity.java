@@ -2,9 +2,6 @@ package com.dmtaiwan.alexander.canibreathe.Views;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,19 +10,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.dmtaiwan.alexander.canibreathe.Bus.EventBus;
+import com.dmtaiwan.alexander.canibreathe.Bus.SettingsEvent;
 import com.dmtaiwan.alexander.canibreathe.Models.AQStation;
 import com.dmtaiwan.alexander.canibreathe.Presenters.MainPresenter;
 import com.dmtaiwan.alexander.canibreathe.Presenters.MainPresenterImpl;
 import com.dmtaiwan.alexander.canibreathe.R;
 import com.dmtaiwan.alexander.canibreathe.Utilities.AQStationAdapter;
+import com.squareup.otto.Subscribe;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements MainView{
+public class MainActivity extends AppCompatActivity implements MainView, AQStationAdapter.RecyclerClickListener{
 
     private MainPresenter mPresenter;
     private List<AQStation> mAQStationList;
@@ -40,8 +39,6 @@ public class MainActivity extends AppCompatActivity implements MainView{
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
 
-    @Bind(R.id.fab)
-    FloatingActionButton mFab;
 
 
     @Override
@@ -49,23 +46,16 @@ public class MainActivity extends AppCompatActivity implements MainView{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
+        EventBus.getInstance().register(this);
         //Set Layout Manager
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(llm);
-        mAdapter = new AQStationAdapter(this, mEmptyView);
+        mAdapter = new AQStationAdapter(this, mEmptyView, this);
         mRecyclerView.setAdapter(mAdapter);
 
         //ActionBar
         setSupportActionBar(mToolbar);
-        mFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         mPresenter = new MainPresenterImpl(this, this);
         mPresenter.requestAQData();
@@ -97,18 +87,29 @@ public class MainActivity extends AppCompatActivity implements MainView{
     }
 
     @Override
-    public void onDataReturned(List<AQStation> aqStations) {
-        List<AQStation> sortedStations = new ArrayList<>();
-        String county = PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.pref_key_county), getString(R.string.pref_county_taipei_city));
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getInstance().unregister(this);
+    }
 
-        for (AQStation aqStation : aqStations) {
-            if (aqStation.getCounty().equals(county)) {
-                sortedStations.add(aqStation);
-            }
-        }
-
+    @Override
+    public void onDataReturned(List<AQStation> aqStationList) {
         if (mAdapter != null) {
-            mAdapter.udpateData(sortedStations);
+            mAdapter.udpateData(aqStationList);
         }
+    }
+
+    @Subscribe
+    public void onSettingsChanged(SettingsEvent event) {
+        if (mPresenter != null) {
+            mPresenter.requestAQData();
+        }
+    }
+
+
+    @Override
+    public void onRecyclerClick() {
+        Intent intent = new Intent(this, DetailActivity.class);
+        startActivity(intent);
     }
 }

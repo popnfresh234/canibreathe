@@ -16,7 +16,7 @@
             android:id="@+id/aq_list_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/bgGray300"
+            android:background="@color/bgGray400"
             android:orientation="horizontal">
 
             <TextView
