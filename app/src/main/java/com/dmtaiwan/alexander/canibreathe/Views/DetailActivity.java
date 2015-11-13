@@ -3,7 +3,6 @@ package com.dmtaiwan.alexander.canibreathe.Views;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 
@@ -41,11 +40,4 @@ public class DetailActivity extends AppCompatActivity {
         Glide.with(this).load(R.drawable.aq_good).fitCenter().into(mCollapsingImage);
     }
 
-    private void applyPalette(Palette palette) {
-        int primaryDark = getResources().getColor(R.color.colorPrimaryDark);
-        int primary = getResources().getColor(R.color.colorPrimary);
-        mCollapsingToolbar.setContentScrimColor(palette.getMutedColor(primary));
-        mCollapsingToolbar.setStatusBarScrimColor(palette.getDarkMutedColor(primaryDark));
-        supportStartPostponedEnterTransition();
-    }
 }
