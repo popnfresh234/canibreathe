@@ -15,7 +15,7 @@
    id="svg4684"
    version="1.1"
    inkscape:version="0.91 r13725"
-   inkscape:export-filename="C:\Development\Android\Projects\canibreathe\app\src\main\res\drawable-mdpi\wind_speed.png"
+   inkscape:export-filename="F:\Development\Android\Projects\CanIBreathe\app\src\main\res\drawable-mdpi\icon_wind_speed.png"
    inkscape:export-xdpi="45"
    inkscape:export-ydpi="45"
    sodipodi:docname="wind_speed.svg">
@@ -29,7 +29,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="3.959798"
-     inkscape:cx="19.006852"
+     inkscape:cx="-24.0509"
      inkscape:cy="58.20577"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -39,9 +39,9 @@
      borderlayer="true"
      showguides="true"
      inkscape:guide-bbox="true"
-     inkscape:window-width="1600"
-     inkscape:window-height="838"
-     inkscape:window-x="-8"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="1912"
      inkscape:window-y="-8"
      inkscape:window-maximized="1">
     <sodipodi:guide
@@ -101,7 +101,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -111,19 +111,19 @@
      id="layer1"
      transform="translate(0,-956.36216)">
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#ffeb3b;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:none;fill-rule:evenodd;stroke:#ff9800;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 8,1004.3799 62.574869,0 c 15.754414,-4.69785 6.011079,-20.01774 -3.282996,-19.1929"
        id="path5258"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccc" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#ffeb3b;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:none;fill-rule:evenodd;stroke:#ff9800;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 8,1020.5741 61.564716,0.2525 c 24.95762,-0.2525 16.162441,19.7475 -0.757614,18.4353"
        id="path5260"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccc" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#ffeb3b;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:none;fill-rule:evenodd;stroke:#ff9800;stroke-width:8;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 8,988.15023 23.062191,0 16.784245,0.50508 c 24.734289,-2.43096 8.368276,-21.39688 -7.187796,-17.9797"
        id="path5262"
        inkscape:connector-curvature="0"
