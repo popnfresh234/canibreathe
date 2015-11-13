@@ -6,6 +6,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v4.content.ContextCompat;
 
+import com.dmtaiwan.alexander.canibreathe.Models.AQStation;
 import com.dmtaiwan.alexander.canibreathe.R;
 
 import java.io.BufferedReader;
@@ -25,6 +26,9 @@ public class Utilities {
     private static final DecimalFormat mDecimalFormat = new DecimalFormat("0.#");
     public static final String FILE_NAME = "epa.json";
 
+    //Intent extras
+    public static final String EXTRA_AQ_STATION = "com.dmtaiwan.alexander.canibreathe.aqstation";
+
     static public boolean isNetworkAvailable(Context c) {
         ConnectivityManager cm =
                 (ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -34,10 +38,10 @@ public class Utilities {
                 activeNetwork.isConnectedOrConnecting();
     }
 
-    public static String parseTime(String time) {
+    public static String formatTime(String time) {
         String parsedTime = "";
 
-        for(int i = (time.length()-5); i <time.length(); i++) {
+        for (int i = (time.length() - 5); i < time.length(); i++) {
             parsedTime = parsedTime + time.charAt(i);
         }
         return parsedTime;
@@ -46,7 +50,7 @@ public class Utilities {
     public static String formatWindSpeed(String windSpeed) {
         if (windSpeed.equals("")) {
             return "0 km/h";
-        }else {
+        } else {
             float metersPerSec = Float.valueOf(windSpeed);
             metersPerSec = metersPerSec * (18 / 5);
             String formattedWindSpeed = mDecimalFormat.format(metersPerSec);
@@ -54,12 +58,27 @@ public class Utilities {
         }
     }
 
+    public static String formatWindDirection(String windDirection) {
+        if (windDirection.equals("")) {
+            return "0" + "\u00B0";
+        }else {
+            return windDirection + "\u00B0";
+        }
+    }
+
+    public static float getWindDegreeForRotate(String windDirection) {
+        if (windDirection.equals("")) {
+            return 0;
+        }else {
+            return Float.valueOf(windDirection);
+        }
+    }
+
     public static String aqiCalc(String pm25String) {
         Double pm25;
-        if(pm25String.equals("")) {
+        if (pm25String.equals("")) {
             return "?";
-        }
-        else {
+        } else {
             pm25 = Double.valueOf(pm25String);
         }
         Double c = Math.floor((10 * pm25) / 10);
@@ -100,6 +119,24 @@ public class Utilities {
         } else if (aqiDouble > 151 && aqiDouble <= 200) {
             return ContextCompat.getDrawable(context, R.drawable.circle_bg_red);
         } else return ContextCompat.getDrawable(context, R.drawable.circle_bg_purple);
+    }
+
+    public static int getDetailHeader(String aqi, Context context) {
+        if (aqi.equals("?")) {
+            return R.drawable.aq_good;
+        }
+
+        double aqiDouble = Double.valueOf(aqi);
+
+        if (aqiDouble <= 50) {
+            return R.drawable.aq_good;
+        } else if (aqiDouble > 51 && aqiDouble <= 100) {
+            return R.drawable.aq_good;
+        } else if (aqiDouble > 101 && aqiDouble <= 150) {
+            return R.drawable.aq_poor;
+        } else if (aqiDouble > 151 && aqiDouble <= 200) {
+            return R.drawable.aq_dangerous;
+        } else return R.drawable.aq_good;
     }
 
     public static int getTextColor(String aqi, Context context) {
@@ -157,5 +194,50 @@ public class Utilities {
             e.printStackTrace();
         }
         return json;
+    }
+
+    public static String getAQDetailTitle(int position, Context context) {
+        switch (position) {
+            case 0:
+                return context.getResources().getString(R.string.aq_detail_title_pm25);
+            case 1:
+                return context.getResources().getString(R.string.aq_detail_title_wind_direction);
+            case 2:
+                return context.getResources().getString(R.string.aq_detail_title_wind_speed);
+            case 3:
+                return context.getResources().getString(R.string.aq_detail_title_update);
+            default:
+                return null;
+        }
+    }
+
+    public static int getAqIcon(int positon, Context context) {
+        switch (positon) {
+            case 0:
+                return R.drawable.icon_pm25;
+            case 1:
+                return R.drawable.icon_wind_direction;
+            case 2:
+                return R.drawable.icon_wind_speed;
+            case 3:
+                return R.drawable.icon_time;
+            default:
+                return 0;
+        }
+    }
+
+    public static String getAqData(int position, AQStation aqStation) {
+        switch (position) {
+            case 0:
+                return aqiCalc(aqStation.getPM25());
+            case 1:
+                return formatWindDirection(aqStation.getWindDirec());
+            case 2:
+                return formatWindSpeed(aqStation.getWindSpeed());
+            case 3:
+                return formatTime(aqStation.getPublishTime());
+            default:
+                return null;
+        }
     }
 }

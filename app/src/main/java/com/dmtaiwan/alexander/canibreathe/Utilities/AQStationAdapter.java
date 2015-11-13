@@ -48,7 +48,7 @@ public class AQStationAdapter extends RecyclerView.Adapter<AQStationAdapter.View
         holder.mPm25Text.setBackground(Utilities.getAqiBackground(pm25String, mContext));
         holder.mStationName.setText(aqStation.getSiteName());
         holder.mWindSpeed.setText(Utilities.formatWindSpeed(aqStation.getWindSpeed()));
-        holder.mTime.setText(Utilities.parseTime(aqStation.getPublishTime()));
+        holder.mTime.setText(Utilities.formatTime(aqStation.getPublishTime()));
     }
 
     @Override
@@ -83,7 +83,9 @@ public class AQStationAdapter extends RecyclerView.Adapter<AQStationAdapter.View
 
         @Override
         public void onClick(View v) {
-            mListener.onRecyclerClick();
+            int position = getAdapterPosition();
+            AQStation aqStation = mStationList.get(position);
+            mListener.onRecyclerClick(aqStation);
         }
     }
 
@@ -95,6 +97,6 @@ public class AQStationAdapter extends RecyclerView.Adapter<AQStationAdapter.View
     }
 
     public interface RecyclerClickListener {
-        void onRecyclerClick();
+        void onRecyclerClick(AQStation aqStation);
     }
 }

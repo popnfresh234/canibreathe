@@ -2,11 +2,17 @@
     <string name="app_name">Can I Breathe?</string>
     <string name="action_settings">Settings</string>
 
-    //Activity Titles
+    <!--Activity Titles-->
     <string name="title_activity_settings">Settings</string>
 
 
-    //Shared prefs
+    <!--AQ Detail Strings-->
+    <string name="aq_detail_title_pm25">PM 2.5</string>
+    <string name="aq_detail_title_wind_speed">Wind Speed</string>
+    <string name="aq_detail_title_wind_direction">Wind Direction</string>
+    <string name="aq_detail_title_update">Last Update</string>
+
+    <!--Shared prefs-->
     <string name="pref_key_county" translatable="false">county</string>
     <string name="pref_county_label" translatable="false">County or City</string>
 

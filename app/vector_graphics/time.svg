@@ -15,7 +15,7 @@
    id="svg4684"
    version="1.1"
    inkscape:version="0.91 r13725"
-   inkscape:export-filename="C:\Development\Android\Projects\canibreathe\app\src\main\res\drawable-mdpi\time.png"
+   inkscape:export-filename="F:\Development\Android\Projects\CanIBreathe\app\src\main\res\drawable-mdpi\icon_time.png"
    inkscape:export-xdpi="45"
    inkscape:export-ydpi="45"
    sodipodi:docname="time.svg">
@@ -29,7 +29,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="3.959798"
-     inkscape:cx="19.006852"
+     inkscape:cx="-24.0509"
      inkscape:cy="58.20577"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -39,9 +39,9 @@
      borderlayer="true"
      showguides="true"
      inkscape:guide-bbox="true"
-     inkscape:window-width="1600"
-     inkscape:window-height="838"
-     inkscape:window-x="-8"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="1912"
      inkscape:window-y="-8"
      inkscape:window-maximized="1">
     <sodipodi:guide
@@ -95,7 +95,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -105,14 +105,14 @@
      id="layer1"
      transform="translate(0,-956.36216)">
     <ellipse
-       style="opacity:1;fill:#ffeb3b;fill-opacity:0;stroke:#ffeb3b;stroke-width:7.25385475;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="opacity:1;fill:#ffeb3b;fill-opacity:0;stroke:#ff9800;stroke-width:7.25385475;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path5865"
        cx="47.621193"
        cy="1004.3622"
        rx="36.206192"
        ry="36.332462" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#ffeb3b;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:none;fill-rule:evenodd;stroke:#ff9800;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 47.873272,982.02863 0,23.83087 17.912806,16.722"
        id="path5867"
        inkscape:connector-curvature="0"

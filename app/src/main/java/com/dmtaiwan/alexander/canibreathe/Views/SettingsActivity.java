@@ -55,6 +55,7 @@ public class SettingsActivity extends PreferenceActivity implements Preference.O
             String language = prefs.getString(getString(R.string.pref_key_county), getString(R.string.pref_county_taipei_city));
             SettingsEvent event = new SettingsEvent();
             EventBus.getInstance().post(event);
+            finish();
         }
     }
 

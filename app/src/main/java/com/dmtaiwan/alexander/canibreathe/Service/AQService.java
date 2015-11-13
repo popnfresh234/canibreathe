@@ -17,7 +17,7 @@ import rx.Subscriber;
  */
 public class AQService {
     public Observable<HttpResponse> requestAQStations() {
-        Observable<HttpResponse> AQStationObservcable = Observable.create(new Observable.OnSubscribe<HttpResponse>() {
+        Observable<HttpResponse> AQStationObservable = Observable.create(new Observable.OnSubscribe<HttpResponse>() {
             @Override
             public void call(Subscriber<? super HttpResponse> subscriber) {
                 String apiUrl = Utilities.API_URL;
@@ -46,6 +46,6 @@ public class AQService {
                 }
             }
         });
-        return AQStationObservcable;
+        return AQStationObservable;
     }
 }

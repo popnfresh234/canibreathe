@@ -17,6 +17,7 @@ import com.dmtaiwan.alexander.canibreathe.Presenters.MainPresenter;
 import com.dmtaiwan.alexander.canibreathe.Presenters.MainPresenterImpl;
 import com.dmtaiwan.alexander.canibreathe.R;
 import com.dmtaiwan.alexander.canibreathe.Utilities.AQStationAdapter;
+import com.dmtaiwan.alexander.canibreathe.Utilities.Utilities;
 import com.squareup.otto.Subscribe;
 
 import java.util.List;
@@ -58,9 +59,15 @@ public class MainActivity extends AppCompatActivity implements MainView, AQStati
         setSupportActionBar(mToolbar);
 
         mPresenter = new MainPresenterImpl(this, this);
-        mPresenter.requestAQData();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mPresenter != null) {
+            mPresenter.requestAQData();
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -108,8 +115,9 @@ public class MainActivity extends AppCompatActivity implements MainView, AQStati
 
 
     @Override
-    public void onRecyclerClick() {
+    public void onRecyclerClick(AQStation aqStation) {
         Intent intent = new Intent(this, DetailActivity.class);
+        intent.putExtra(Utilities.EXTRA_AQ_STATION, aqStation);
         startActivity(intent);
     }
 }

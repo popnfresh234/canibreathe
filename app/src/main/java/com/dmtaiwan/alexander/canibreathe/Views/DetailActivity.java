@@ -3,11 +3,17 @@ package com.dmtaiwan.alexander.canibreathe.Views;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.dmtaiwan.alexander.canibreathe.Models.AQStation;
 import com.dmtaiwan.alexander.canibreathe.R;
+import com.dmtaiwan.alexander.canibreathe.Utilities.AQDetailsAdapter;
+import com.dmtaiwan.alexander.canibreathe.Utilities.DividerItemDecoration;
+import com.dmtaiwan.alexander.canibreathe.Utilities.Utilities;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -18,6 +24,9 @@ import butterknife.ButterKnife;
 public class DetailActivity extends AppCompatActivity {
     private static final String LOG_TAG = DetailActivity.class.getSimpleName();
 
+    private AQStation mAQStation;
+    private AQDetailsAdapter mAdapter;
+
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
 
@@ -27,6 +36,9 @@ public class DetailActivity extends AppCompatActivity {
     @Bind(R.id.collapsing_image)
     ImageView mCollapsingImage;
 
+    @Bind(R.id.aq_detail_recycler_view)
+    RecyclerView mRecyclerView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +46,22 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
         ButterKnife.bind(this);
 
+        if (getIntent() != null) {
+            mAQStation = getIntent().getParcelableExtra(Utilities.EXTRA_AQ_STATION);
+        }
+
         setSupportActionBar(mToolbar);
         mCollapsingToolbar.setTitle("TEST");
         mCollapsingToolbar.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
-        Glide.with(this).load(R.drawable.aq_good).fitCenter().into(mCollapsingImage);
+        int header = Utilities.getDetailHeader(Utilities.aqiCalc(mAQStation.getPM25()), this);
+        Glide.with(this).load(header).fitCenter().into(mCollapsingImage);
+
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(llm);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
+        mAdapter = new AQDetailsAdapter(this, mAQStation);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
 }
