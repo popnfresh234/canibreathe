@@ -2,6 +2,8 @@ package com.dmtaiwan.alexander.canibreathe.Views;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -43,6 +45,9 @@ public class MainActivity extends AppCompatActivity implements MainView, AQStati
 
     @Bind(R.id.toolbar_progress)
     ProgressBar mProgressBar;
+
+    @Bind(R.id.coordinator_layout)
+    CoordinatorLayout mCoordinatorLayout;
 
 
 
@@ -94,6 +99,10 @@ public class MainActivity extends AppCompatActivity implements MainView, AQStati
             return true;
         }
 
+        if (id == R.id.action_refresh) {
+            mPresenter.requestAQData();
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -109,6 +118,20 @@ public class MainActivity extends AppCompatActivity implements MainView, AQStati
             mAdapter.udpateData(aqStationList);
         }
         mProgressBar.setVisibility(View.INVISIBLE);
+
+    }
+
+    @Override
+    public void onErrorReturned(String errorMessage) {
+        mProgressBar.setVisibility(View.INVISIBLE);
+        Snackbar snackbar = Snackbar.make(mCoordinatorLayout, errorMessage, Snackbar.LENGTH_LONG);
+        snackbar.show();
+    }
+
+    @Override
+    public void onNetworkDataSuccess() {
+        Snackbar snackbar = Snackbar.make(mCoordinatorLayout, getString(R.string.update_success), Snackbar.LENGTH_LONG);
+        snackbar.show();
     }
 
     @Override

@@ -26,6 +26,7 @@ public class MainPresenterImpl implements MainPresenter, MainInteractorImpl.Main
     private MainView mView;
     private MainInteractor mInteractor;
     private Context mContext;
+    private List<AQStation> mAQStationList;
 
     public MainPresenterImpl(MainView mainView, Context context) {
         this.mView = mainView;
@@ -38,12 +39,23 @@ public class MainPresenterImpl implements MainPresenter, MainInteractorImpl.Main
         mInteractor.fetchAQData();
     }
 
-
     @Override
     public void onResult(String result) {
         List<AQStation> AQStationList = parseResult(result);
         List<AQStation> sortedAQStationList = sortStations(AQStationList);
-        mView.onDataReturned(sortedAQStationList);
+        if (sortedAQStationList.size() > 0) {
+            mView.onDataReturned(sortedAQStationList);
+        }
+    }
+
+    @Override
+    public void onError(String errorMessage) {
+        mView.onErrorReturned(errorMessage);
+    }
+
+    @Override
+    public void onNetworkSucess() {
+        mView.onNetworkDataSuccess();
     }
 
 
@@ -63,7 +75,7 @@ public class MainPresenterImpl implements MainPresenter, MainInteractorImpl.Main
                 aqStations.add(aqStation);
             }
         } catch (JSONException e) {
-            e.printStackTrace();
+            mView.onErrorReturned(mContext.getString(R.string.error_json));
         }
         return aqStations;
     }

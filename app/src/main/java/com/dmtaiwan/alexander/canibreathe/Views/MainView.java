@@ -10,6 +10,10 @@ import java.util.List;
 public interface MainView {
     void onDataReturned(List<AQStation> aqStations);
 
+    void onErrorReturned(String errorMessage);
+
+    void onNetworkDataSuccess();
+
     void showProgressBar();
 
     void hideProgressBar();

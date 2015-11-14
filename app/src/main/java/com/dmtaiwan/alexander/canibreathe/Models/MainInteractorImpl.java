@@ -1,6 +1,7 @@
 package com.dmtaiwan.alexander.canibreathe.Models;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.dmtaiwan.alexander.canibreathe.R;
 import com.dmtaiwan.alexander.canibreathe.Service.AQService;
@@ -45,8 +46,16 @@ public class MainInteractorImpl implements MainInteractor {
             Action1<HttpResponse> subscriber = new Action1<HttpResponse>() {
                 @Override
                 public void call(HttpResponse httpResponse) {
-                    String response = processData(httpResponse);
-                    mListener.onResult(response);
+                    if (httpSuccess(httpResponse)) {
+                        Log.i("sucess", "success");
+                        Log.i("code", String.valueOf(httpResponse.getResponseCode()));
+                        Utilities.writeToFile(httpResponse.getResponse(), mContext);
+                        mListener.onResult(httpResponse.getResponse());
+                        mListener.onNetworkSucess();
+                    }else {
+                        Log.i("error", "error");
+                        mListener.onError(getErrorMessage(httpResponse));
+                    }
                 }
             };
 
@@ -55,27 +64,38 @@ public class MainInteractorImpl implements MainInteractor {
                     .subscribe(subscriber);
         } else {
             //No network
-            mListener.onResult(mContext.getString(R.string.error_no_network));
+            mListener.onError(mContext.getString(R.string.error_no_network));
         }
     }
 
-
-    private String processData(HttpResponse httpResponse) {
-        int responseCode = httpResponse.getResponseCode();
-
-        //If http response was good, get the json string
-        if (responseCode == HttpURLConnection.HTTP_OK) {
-            Utilities.writeToFile(httpResponse.getResponse(), mContext);
-            return httpResponse.getResponse();
-        } else if (Utilities.doesFileExist(mContext)) {
-            return Utilities.readFromFile(mContext);
-        } else {
-            return httpResponse.getResponse();
+    private boolean httpSuccess(HttpResponse httpResponse) {
+        if (httpResponse.getResponseCode() == HttpURLConnection.HTTP_OK) {
+            return true;
+        }else {
+            return false;
         }
     }
+
+    private String getErrorMessage(HttpResponse httpResponse) {
+        int httpCode = httpResponse.getResponseCode();
+
+        switch (httpCode) {
+            case HttpURLConnection.HTTP_INTERNAL_ERROR:
+                return mContext.getString(R.string.error_http_500);
+            case HttpURLConnection.HTTP_UNAVAILABLE:
+                return mContext.getString(R.string.error_http_503);
+            default:
+                return mContext.getString(R.string.error_http);
+        }
+    }
+
 
     public interface MainInteractorListener {
         void onResult(String result);
+
+        void onError(String errorMessage);
+
+        void onNetworkSucess();
 
         void showProgress();
 
