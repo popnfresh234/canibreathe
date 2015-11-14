@@ -131,12 +131,12 @@ public class Utilities {
         if (aqiDouble <= 50) {
             return R.drawable.aq_good;
         } else if (aqiDouble > 51 && aqiDouble <= 100) {
-            return R.drawable.aq_good;
+            return R.drawable.aq_moderate;
         } else if (aqiDouble > 101 && aqiDouble <= 150) {
-            return R.drawable.aq_poor;
+            return R.drawable.aq_unhealthy;
         } else if (aqiDouble > 151 && aqiDouble <= 200) {
             return R.drawable.aq_dangerous;
-        } else return R.drawable.aq_good;
+        } else return R.drawable.aq_unknown;
     }
 
     public static int getTextColor(String aqi, Context context) {

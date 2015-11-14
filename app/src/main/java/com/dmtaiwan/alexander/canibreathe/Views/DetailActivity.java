@@ -51,7 +51,7 @@ public class DetailActivity extends AppCompatActivity {
         }
 
         setSupportActionBar(mToolbar);
-        mCollapsingToolbar.setTitle("TEST");
+        mCollapsingToolbar.setTitle(mAQStation.getSiteName());
         mCollapsingToolbar.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
         int header = Utilities.getDetailHeader(Utilities.aqiCalc(mAQStation.getPM25()), this);
         Glide.with(this).load(header).fitCenter().into(mCollapsingImage);
