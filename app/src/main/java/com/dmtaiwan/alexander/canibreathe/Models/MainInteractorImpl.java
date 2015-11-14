@@ -2,6 +2,7 @@ package com.dmtaiwan.alexander.canibreathe.Models;
 
 import android.content.Context;
 
+import com.dmtaiwan.alexander.canibreathe.R;
 import com.dmtaiwan.alexander.canibreathe.Service.AQService;
 import com.dmtaiwan.alexander.canibreathe.Utilities.Utilities;
 
@@ -32,11 +33,13 @@ public class MainInteractorImpl implements MainInteractor {
 
         //If there's stored data, load as default
         if (Utilities.doesFileExist(mContext)) {
+            mListener.showProgress();
             String response = Utilities.readFromFile(mContext);
             mListener.onResult(response);
         }
 
         if (Utilities.isNetworkAvailable(mContext)) {
+            mListener.showProgress();
             AQService aqService = new AQService();
             Observable<HttpResponse> httpResponseObservable = aqService.requestAQStations();
             Action1<HttpResponse> subscriber = new Action1<HttpResponse>() {
@@ -52,7 +55,7 @@ public class MainInteractorImpl implements MainInteractor {
                     .subscribe(subscriber);
         } else {
             //No network
-            mListener.onResult("FAIL");
+            mListener.onResult(mContext.getString(R.string.error_no_network));
         }
     }
 
@@ -73,5 +76,9 @@ public class MainInteractorImpl implements MainInteractor {
 
     public interface MainInteractorListener {
         void onResult(String result);
+
+        void showProgress();
+
+        void hideProgress();
     }
 }

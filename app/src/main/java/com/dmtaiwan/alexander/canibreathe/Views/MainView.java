@@ -9,4 +9,8 @@ import java.util.List;
  */
 public interface MainView {
     void onDataReturned(List<AQStation> aqStations);
+
+    void showProgressBar();
+
+    void hideProgressBar();
 }

@@ -38,13 +38,13 @@ public class MainPresenterImpl implements MainPresenter, MainInteractorImpl.Main
         mInteractor.fetchAQData();
     }
 
+
     @Override
     public void onResult(String result) {
-        List<AQStation> AQStationList =  parseResult(result);
+        List<AQStation> AQStationList = parseResult(result);
         List<AQStation> sortedAQStationList = sortStations(AQStationList);
         mView.onDataReturned(sortedAQStationList);
     }
-
 
 
     private List<AQStation> parseResult(String result) {
@@ -79,4 +79,15 @@ public class MainPresenterImpl implements MainPresenter, MainInteractorImpl.Main
         }
         return sortedStations;
     }
+
+    @Override
+    public void showProgress() {
+        mView.showProgressBar();
+    }
+
+    @Override
+    public void hideProgress() {
+        mView.hideProgressBar();
+    }
+
 }

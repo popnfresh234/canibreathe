@@ -5,7 +5,8 @@
     <!--Activity Titles-->
     <string name="title_activity_settings">Settings</string>
 
-
+    <!--Error Strings-->
+    <string name="error_no_network">No network currently available, cannot fetch new data</string>
     <!--AQ Detail Strings-->
     <string name="aq_detail_title_pm25">PM 2.5</string>
     <string name="aq_detail_title_wind_speed">Wind Speed</string>

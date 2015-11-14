@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.dmtaiwan.alexander.canibreathe.Bus.EventBus;
 import com.dmtaiwan.alexander.canibreathe.Bus.SettingsEvent;
@@ -39,6 +40,9 @@ public class MainActivity extends AppCompatActivity implements MainView, AQStati
 
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
+
+    @Bind(R.id.toolbar_progress)
+    ProgressBar mProgressBar;
 
 
 
@@ -104,6 +108,17 @@ public class MainActivity extends AppCompatActivity implements MainView, AQStati
         if (mAdapter != null) {
             mAdapter.udpateData(aqStationList);
         }
+        mProgressBar.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void showProgressBar() {
+        mProgressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgressBar() {
+        mProgressBar.setVisibility(View.INVISIBLE);
     }
 
     @Subscribe

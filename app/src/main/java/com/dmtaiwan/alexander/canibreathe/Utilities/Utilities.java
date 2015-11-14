@@ -22,7 +22,7 @@ import java.text.DecimalFormat;
  * Created by Alexander on 11/10/2015.
  */
 public class Utilities {
-    public static final String API_URL = "http://opendata.epa.gov.tw/ws/Data/AQX/?$orderby=County&$skip=0&$top=1000&format=json";
+    public static final String API_URL = "http://opendata.epa.gov.tw/ws/Data/AQX/?$orderby=County&$skip=0&$top=1000&format=jsona";
     private static final DecimalFormat mDecimalFormat = new DecimalFormat("0.#");
     public static final String FILE_NAME = "epa.json";
 
