@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.dmtaiwan.alexander.canibreathe.Models.AQStation;
+import com.dmtaiwan.alexander.canibreathe.Presenters.DetailPresenterImpl;
 import com.dmtaiwan.alexander.canibreathe.R;
 import com.dmtaiwan.alexander.canibreathe.Utilities.AQDetailsAdapter;
 import com.dmtaiwan.alexander.canibreathe.Utilities.DividerItemDecoration;
@@ -21,11 +22,12 @@ import butterknife.ButterKnife;
 /**
  * Created by Alexander on 11/13/2015.
  */
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity extends AppCompatActivity implements DetailView{
     private static final String LOG_TAG = DetailActivity.class.getSimpleName();
 
     private AQStation mAQStation;
     private AQDetailsAdapter mAdapter;
+    private DetailPresenterImpl mPresenter;
 
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
@@ -62,6 +64,23 @@ public class DetailActivity extends AppCompatActivity {
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
         mAdapter = new AQDetailsAdapter(this, mAQStation);
         mRecyclerView.setAdapter(mAdapter);
+
+        //Create presenter
+        mPresenter = new DetailPresenterImpl(this);
     }
 
+    @Override
+    public void requestParseData() {
+        mPresenter.requestParseData();
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void onDataReturned() {
+
+    }
 }
