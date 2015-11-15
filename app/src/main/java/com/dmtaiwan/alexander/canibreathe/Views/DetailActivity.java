@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -18,6 +19,7 @@ import com.dmtaiwan.alexander.canibreathe.Utilities.Utilities;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import lecho.lib.hellocharts.model.ColumnChartData;
 
 /**
  * Created by Alexander on 11/13/2015.
@@ -40,6 +42,7 @@ public class DetailActivity extends AppCompatActivity implements DetailView{
 
     @Bind(R.id.aq_detail_recycler_view)
     RecyclerView mRecyclerView;
+
 
 
     @Override
@@ -66,13 +69,13 @@ public class DetailActivity extends AppCompatActivity implements DetailView{
         mRecyclerView.setAdapter(mAdapter);
 
         //Create presenter
-        mPresenter = new DetailPresenterImpl(this);
+        mPresenter = new DetailPresenterImpl(this, this);
+        if (mPresenter != null) {
+            mPresenter.requestParseData(mAQStation.getSiteName());
+        }
     }
 
-    @Override
-    public void requestParseData() {
-        mPresenter.requestParseData();
-    }
+
 
     @Override
     public void showLoading() {
@@ -80,7 +83,8 @@ public class DetailActivity extends AppCompatActivity implements DetailView{
     }
 
     @Override
-    public void onDataReturned() {
-
+    public void onDataReturned(ColumnChartData chartData) {
+        Log.i(LOG_TAG, "dataReturned");
+        mAdapter.setChartData(chartData);
     }
 }
