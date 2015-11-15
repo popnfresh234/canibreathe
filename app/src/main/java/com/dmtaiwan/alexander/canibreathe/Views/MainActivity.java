@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +30,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements MainView, AQStationAdapter.RecyclerClickListener{
+
+    private static final String LOG_TAG = MainActivity.class.getSimpleName();
 
     private MainPresenter mPresenter;
     private List<AQStation> mAQStationList;
@@ -68,15 +71,12 @@ public class MainActivity extends AppCompatActivity implements MainView, AQStati
         setSupportActionBar(mToolbar);
 
         mPresenter = new MainPresenterImpl(this, this);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
         if (mPresenter != null) {
             mPresenter.requestAQData();
+            Log.i(LOG_TAG, "onCreate update");
         }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements MainView, AQStati
     @Subscribe
     public void onSettingsChanged(SettingsEvent event) {
         if (mPresenter != null) {
-            mPresenter.requestAQData();
+            mPresenter.requestCountyChange();
         }
     }
 

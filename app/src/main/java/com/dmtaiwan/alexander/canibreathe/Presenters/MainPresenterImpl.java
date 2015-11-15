@@ -40,6 +40,11 @@ public class MainPresenterImpl implements MainPresenter, MainInteractorImpl.Main
     }
 
     @Override
+    public void requestCountyChange() {
+        mInteractor.requestCountyChange();
+    }
+
+    @Override
     public void onResult(String result) {
         List<AQStation> AQStationList = parseResult(result);
         List<AQStation> sortedAQStationList = sortStations(AQStationList);

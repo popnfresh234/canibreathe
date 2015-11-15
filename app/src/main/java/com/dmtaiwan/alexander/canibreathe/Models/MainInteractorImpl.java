@@ -68,6 +68,43 @@ public class MainInteractorImpl implements MainInteractor {
         }
     }
 
+    @Override
+    public void requestCountyChange() {
+        if (Utilities.doesFileExist(mContext)) {
+            mListener.showProgress();
+            String response = Utilities.readFromFile(mContext);
+            mListener.onResult(response);
+        }
+
+        else if(Utilities.isNetworkAvailable(mContext)) {
+            mListener.showProgress();
+            AQService aqService = new AQService();
+            Observable<HttpResponse> httpResponseObservable = aqService.requestAQStations();
+            Action1<HttpResponse> subscriber = new Action1<HttpResponse>() {
+                @Override
+                public void call(HttpResponse httpResponse) {
+                    if (httpSuccess(httpResponse)) {
+                        Log.i("sucess", "success");
+                        Log.i("code", String.valueOf(httpResponse.getResponseCode()));
+                        Utilities.writeToFile(httpResponse.getResponse(), mContext);
+                        mListener.onResult(httpResponse.getResponse());
+                        mListener.onNetworkSucess();
+                    }else {
+                        Log.i("error", "error");
+                        mListener.onError(getErrorMessage(httpResponse));
+                    }
+                }
+            };
+
+            httpResponseObservable.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(subscriber);
+        } else {
+            //No network
+            mListener.onError(mContext.getString(R.string.error_no_network));
+        }
+    }
+
     private boolean httpSuccess(HttpResponse httpResponse) {
         if (httpResponse.getResponseCode() == HttpURLConnection.HTTP_OK) {
             return true;

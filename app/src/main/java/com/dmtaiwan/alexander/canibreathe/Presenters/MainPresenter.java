@@ -5,4 +5,6 @@ package com.dmtaiwan.alexander.canibreathe.Presenters;
  */
 public interface MainPresenter {
     void requestAQData();
+
+    void requestCountyChange();
 }

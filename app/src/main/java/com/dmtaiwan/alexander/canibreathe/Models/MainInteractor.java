@@ -5,4 +5,6 @@ package com.dmtaiwan.alexander.canibreathe.Models;
  */
 public interface MainInteractor {
     void fetchAQData();
+
+    void requestCountyChange();
 }
