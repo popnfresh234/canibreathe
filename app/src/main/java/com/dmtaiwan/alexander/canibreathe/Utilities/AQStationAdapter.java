@@ -1,6 +1,7 @@
 package com.dmtaiwan.alexander.canibreathe.Utilities;
 
 import android.content.Context;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import com.dmtaiwan.alexander.canibreathe.Models.AQStation;
 import com.dmtaiwan.alexander.canibreathe.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -26,11 +28,13 @@ public class AQStationAdapter extends RecyclerView.Adapter<AQStationAdapter.View
     final private View mEmptyView;
     private RecyclerClickListener mListener;
     private List<AQStation> mStationList;
+    private int mPage;
 
-    public AQStationAdapter(Context context, View emptyView, RecyclerClickListener listener) {
+    public AQStationAdapter(Context context, View emptyView, RecyclerClickListener listener, int page) {
         this.mContext = context;
         this.mEmptyView = emptyView;
         this.mListener = listener;
+        this.mPage = page;
     }
 
     @Override
@@ -55,7 +59,7 @@ public class AQStationAdapter extends RecyclerView.Adapter<AQStationAdapter.View
     public int getItemCount() {
         if (mStationList != null) {
             return mStationList.size();
-        }else {
+        } else {
             return 0;
         }
     }
@@ -91,12 +95,37 @@ public class AQStationAdapter extends RecyclerView.Adapter<AQStationAdapter.View
 
     public void udpateData(List<AQStation> stationList) {
         Log.i(LOG_TAG, "updating data");
-        mStationList = stationList;
+        mStationList = sortStations(stationList, mPage);
         notifyDataSetChanged();
         mEmptyView.setVisibility(mStationList.size() == 0 ? View.VISIBLE : View.GONE);
     }
 
     public interface RecyclerClickListener {
         void onRecyclerClick(AQStation aqStation);
+    }
+
+
+    private List<AQStation> sortStations(List<AQStation> aqStationList, int page) {
+        List<AQStation> sortedStations = new ArrayList<>();
+        if (page == 0) {
+            String county = PreferenceManager.getDefaultSharedPreferences(mContext).getString(mContext.getString(R.string.pref_key_county), mContext.getString(R.string.pref_county_taipei_city));
+            for (AQStation aqStation : aqStationList) {
+                if (aqStation.getCounty().equals(county)) {
+                    sortedStations.add(aqStation);
+                }
+            }
+            return sortedStations;
+        }
+        if (page == 1) {
+            String secondaryCounty = PreferenceManager.getDefaultSharedPreferences(mContext).getString(mContext.getString(R.string.pref_key_secondary_county), mContext.getString(R.string.pref_county_taipei_city));
+            for (AQStation aqStation : aqStationList) {
+                if (aqStation.getCounty().equals(secondaryCounty)) {
+                    sortedStations.add(aqStation);
+                }
+            }
+            return sortedStations;
+        } else {
+            return null;
+        }
     }
 }

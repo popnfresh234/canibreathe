@@ -8,4 +8,11 @@
         android:entryValues="@array/pref_county_values"
         android:key="@string/pref_key_county"
         android:title="@string/pref_county_label" />
+
+    <ListPreference
+        android:defaultValue="@string/pref_county_taipei_city"
+        android:entries="@array/pref_county_options"
+        android:entryValues="@array/pref_county_values"
+        android:key="@string/pref_key_secondary_county"
+        android:title="@string/pref_secondary_county_label" />
 </PreferenceScreen>

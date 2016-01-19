@@ -1,12 +1,16 @@
 package com.dmtaiwan.alexander.canibreathe.Views;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -34,14 +38,9 @@ public class MainActivity extends AppCompatActivity implements MainView, AQStati
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
 
     private MainPresenter mPresenter;
-    private List<AQStation> mAQStationList;
-    private AQStationAdapter mAdapter;
+    private FragmentPagerAdapter mPagerAdapter;
 
-    @Bind(R.id.empty_view)
-    View mEmptyView;
 
-    @Bind(R.id.aq_recycler_view)
-    RecyclerView mRecyclerView;
 
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
@@ -52,6 +51,12 @@ public class MainActivity extends AppCompatActivity implements MainView, AQStati
     @Bind(R.id.coordinator_layout)
     CoordinatorLayout mCoordinatorLayout;
 
+    @Bind(R.id.tab_layout)
+    TabLayout mTabLayout;
+
+    @Bind(R.id.view_pager)
+    ViewPager mViewPager;
+
 
 
     @Override
@@ -60,12 +65,12 @@ public class MainActivity extends AppCompatActivity implements MainView, AQStati
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         EventBus.getInstance().register(this);
-        //Set Layout Manager
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(llm);
-        mAdapter = new AQStationAdapter(this, mEmptyView, this);
-        mRecyclerView.setAdapter(mAdapter);
+
+
+        mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), this);
+        mViewPager.setAdapter(mPagerAdapter);
+        mTabLayout.setupWithViewPager(mViewPager);
+
 
         //ActionBar
         setSupportActionBar(mToolbar);
@@ -112,11 +117,15 @@ public class MainActivity extends AppCompatActivity implements MainView, AQStati
         EventBus.getInstance().unregister(this);
     }
 
+
+
     @Override
     public void onDataReturned(List<AQStation> aqStationList) {
-        if (mAdapter != null) {
-            mAdapter.udpateData(aqStationList);
-        }
+        AQStationListFragment fragment = (AQStationListFragment) mPagerAdapter.instantiateItem(mViewPager, 0);
+        AQStationListFragment secondaryFragment = (AQStationListFragment) mPagerAdapter.instantiateItem(mViewPager, 1);
+        fragment.setData(aqStationList);
+        secondaryFragment.setData(aqStationList);
+
         mProgressBar.setVisibility(View.INVISIBLE);
 
     }
@@ -157,5 +166,40 @@ public class MainActivity extends AppCompatActivity implements MainView, AQStati
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra(Utilities.EXTRA_AQ_STATION, aqStation);
         startActivity(intent);
+    }
+
+    public static class PagerAdapter extends FragmentPagerAdapter {
+        private static int NUM_ITEMS = 2;
+        private Context mContext;
+
+        public PagerAdapter(FragmentManager fragmentManager, Context context) {
+            super(fragmentManager);
+            mContext = context;
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0:
+                    //Favorites fragment
+                    return AQStationListFragment.newInstance(0, "Title 1");
+                case 1:
+                    return AQStationListFragment.newInstance(1, "Title 2");
+                default:
+                    return null;
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return NUM_ITEMS;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            String[] titleArray = mContext.getResources().getStringArray(R.array.tab_titles);
+            return titleArray[position];
+        }
+
     }
 }

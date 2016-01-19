@@ -26,6 +26,8 @@
     <!--Shared prefs-->
     <string name="pref_key_county" translatable="false">county</string>
     <string name="pref_county_label" translatable="false">County or City</string>
+    <string name="pref_key_secondary_county" translatable="false">secondary_county</string>
+    <string name="pref_secondary_county_label" translatable="false">Secondary County or City</string>
 
     <string name="pref_county_label_yilan_county">YiLan County</string>
     <string name="pref_county_label_hualian_county">HuaLian County</string>
@@ -73,5 +75,9 @@
     <string name="pref_county_tainan_city">臺南市</string>
     <string name="pref_county_penghu_county">澎湖縣</string>
 
+    <string-array name="tab_titles">
+        <item>First</item>
+        <item>Second</item>
+    </string-array>
 
 </resources>
