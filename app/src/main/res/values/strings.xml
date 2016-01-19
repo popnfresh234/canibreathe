@@ -76,8 +76,8 @@
     <string name="pref_county_penghu_county">澎湖縣</string>
 
     <string-array name="tab_titles">
-        <item>First</item>
-        <item>Second</item>
+        <item>Primary County</item>
+        <item>Secondary County</item>
     </string-array>
 
 </resources>
