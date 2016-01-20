@@ -13,5 +13,4 @@
     <dimen name="detail_item_margin_right">64dp</dimen>
     <dimen name="detail_item_margin_left">64dp</dimen>
     <dimen name="detail_list_view_padding">9dp</dimen>
-
 </resources>

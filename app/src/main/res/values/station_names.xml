@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="前金" translatable="false">qián jīn</string>
+    <string name="基隆" translatable="false">jīlóng</string>
+    <string name="汐止" translatable="false">xīzhǐ</string>
+    <string name="萬里" translatable="false">wànlǐ</string>
+    <string name="新店" translatable="false">xīndiàn</string>
+    <string name="土城" translatable="false">tǔ chéng</string>
+    <string name="板橋" translatable="false">bǎnqiáo</string>
+    <string name="新莊" translatable="false">xīn zhuāng</string>
+    <string name="菜寮" translatable="false">cài liáo</string>
+    <string name="林口" translatable="false">línkǒu</string>
+    <string name="淡水" translatable="false">dànshuǐ</string>
+    <string name="士林" translatable="false">shì lín</string>
+    <string name="中山" translatable="false">zhōngshān</string>
+    <string name="萬華" translatable="false">wàn huá</string>
+    <string name="古亭" translatable="false">gǔ tíng</string>
+    <string name="松山" translatable="false">sōngshān</string>
+    <string name="大同" translatable="false">dàtóng</string>
+    <string name="桃園" translatable="false">táoyuán</string>
+    <string name="大園" translatable="false">dàyuán</string>
+    <string name="觀音" translatable="false">guānyīn</string>
+    <string name="平鎮" translatable="false">píng zhèn</string>
+    <string name="龍潭" translatable="false">lóngtán</string>
+    <string name="湖口" translatable="false">hú kǒu</string>
+    <string name="竹東" translatable="false">zhú dōng</string>
+    <string name="新竹" translatable="false">xīnzhú</string>
+    <string name="頭份" translatable="false">tóu fèn</string>
+    <string name="苗栗" translatable="false">miáolì</string>
+    <string name="三義" translatable="false">sānyì</string>
+    <string name="豐原" translatable="false">fēngyuán</string>
+    <string name="沙鹿" translatable="false">shā lù</string>
+    <string name="大里" translatable="false">dàlǐ</string>
+    <string name="忠明" translatable="false">zhōngmíng</string>
+    <string name="西屯" translatable="false">xī tún</string>
+    <string name="彰化" translatable="false">zhānghuà</string>
+    <string name="線西" translatable="false">xiàn xī</string>
+    <string name="二林" translatable="false">èr lín</string>
+    <string name="南投" translatable="false">nántóu</string>
+    <string name="斗六" translatable="false">dòu liù</string>
+    <string name="崙背" translatable="false">lún bèi</string>
+    <string name="新港" translatable="false">xīngǎng</string>
+    <string name="朴子" translatable="false">pǔ zi</string>
+    <string name="臺西" translatable="false">tái xī</string>
+    <string name="嘉義" translatable="false">jiāyì</string>
+    <string name="新營" translatable="false">xīnyíng</string>
+    <string name="善化" translatable="false">shàn huà</string>
+    <string name="安南" translatable="false">ānnán</string>
+    <string name="臺南" translatable="false">táinán</string>
+    <string name="美濃" translatable="false">měinóng</string>
+    <string name="橋頭" translatable="false">qiáotóu</string>
+    <string name="仁武" translatable="false">rén wǔ</string>
+    <string name="鳳山" translatable="false">fèng shān</string>
+    <string name="大寮" translatable="false">dà liáo</string>
+    <string name="林園" translatable="false">lín yuán</string>
+    <string name="楠梓" translatable="false">nán zǐ</string>
+    <string name="左營" translatable="false">zuǒ yíng</string>
+    <string name="前鎮" translatable="false">qián zhèn</string>
+    <string name="小港" translatable="false">xiǎogǎng</string>
+    <string name="屏東" translatable="false">píng dōng</string>
+    <string name="潮州" translatable="false">cháozhōu</string>
+    <string name="恆春" translatable="false">héng chūn</string>
+    <string name="臺東" translatable="false">tái dōng</string>
+    <string name="花蓮" translatable="false">huālián</string>
+    <string name="陽明" translatable="false">yángmíng</string>
+    <string name="宜蘭" translatable="false">yílán</string>
+    <string name="冬山" translatable="false">dōngshān</string>
+    <string name="三重" translatable="false">sānchóng</string>
+    <string name="中壢" translatable="false">zhōng lì</string>
+    <string name="竹山" translatable="false">zhúshān</string>
+    <string name="永和" translatable="false">yǒnghé</string>
+    <string name="復興" translatable="false">fùxīng</string>
+    <string name="埔里" translatable="false">pùlǐ</string>
+    <string name="馬祖" translatable="false">mǎzǔ</string>
+    <string name="金門" translatable="false">jīnmén</string>
+    <string name="馬公" translatable="false">mǎgōng</string>
+    <string name="關山" translatable="false">guānshān</string>
+    <string name="麥寮" translatable="false">mài liáo</string>
+</resources>
