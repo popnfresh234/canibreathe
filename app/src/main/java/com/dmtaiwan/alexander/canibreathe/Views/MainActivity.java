@@ -159,6 +159,12 @@ public class MainActivity extends AppCompatActivity implements MainView, AQStati
     public void onSettingsChanged(SettingsEvent event) {
         if (mPresenter != null) {
             mPresenter.requestCountyChange();
+
+            //Update tabs
+            TabLayout.Tab tab0 = mTabLayout.getTabAt(0);
+            TabLayout.Tab tab1 = mTabLayout.getTabAt(1);
+            tab0.setText(PreferenceManager.getDefaultSharedPreferences(this).getString(this.getString(R.string.pref_key_county), this.getString(R.string.pref_county_taipei_city)));
+            tab1.setText(PreferenceManager.getDefaultSharedPreferences(this).getString(this.getString(R.string.pref_key_secondary_county), this.getString(R.string.pref_county_taipei_city)));
         }
     }
 

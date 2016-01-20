@@ -56,12 +56,15 @@ public class AQStationAdapter extends RecyclerView.Adapter<AQStationAdapter.View
         holder.mPm25Text.setBackground(Utilities.getAqiBackground(pm25String, mContext));
 
 
-        if (language == mContext.getString(R.string.pref_language_zh)) {
+        if (language.equals(mContext.getString(R.string.pref_language_zh))) {
             holder.mStationName.setText(aqStation.getSiteName());
         }
 
-        if (language == mContext.getString(R.string.pref_language_eng)) {
-            holder.mStationName.setText(aqStation.getEngSiteName());
+        if (language.equals(mContext.getString(R.string.pref_language_eng))) {
+            int id = mContext.getResources().getIdentifier("station" + String.valueOf(aqStation.getSiteNumber()), "string", mContext.getPackageName());
+            String name = mContext.getResources().getString(id);
+            Log.i(LOG_TAG, name);
+            holder.mStationName.setText(mContext.getResources().getString(id));
         }
         holder.mWindSpeed.setText(Utilities.formatWindSpeed(aqStation.getWindSpeed()));
         holder.mTime.setText(Utilities.formatTime(aqStation.getPublishTime()));

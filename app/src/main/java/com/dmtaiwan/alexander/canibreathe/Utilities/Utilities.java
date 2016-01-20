@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 
 import com.dmtaiwan.alexander.canibreathe.Models.AQStation;
 import com.dmtaiwan.alexander.canibreathe.R;
@@ -294,17 +293,5 @@ public class Utilities {
             chartData.setAxisYLeft(null);
         }
         return chartData;
-    }
-
-    public static String getEngSiteName(Context mContext, String siteName) {
-        //Find eng site name
-        Log.i("name", siteName);
-        int identifier = getStringIdentifier(mContext, siteName);
-
-        return mContext.getString(identifier);
-    }
-
-    public static int getStringIdentifier(Context context, String name) {
-        return context.getResources().getIdentifier(name, "string", context.getPackageName());
     }
 }

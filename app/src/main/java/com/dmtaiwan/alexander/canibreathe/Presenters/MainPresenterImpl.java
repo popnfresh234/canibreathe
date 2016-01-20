@@ -6,7 +6,6 @@ import com.dmtaiwan.alexander.canibreathe.Models.AQStation;
 import com.dmtaiwan.alexander.canibreathe.Models.MainInteractor;
 import com.dmtaiwan.alexander.canibreathe.Models.MainInteractorImpl;
 import com.dmtaiwan.alexander.canibreathe.R;
-import com.dmtaiwan.alexander.canibreathe.Utilities.Utilities;
 import com.dmtaiwan.alexander.canibreathe.Views.MainView;
 
 import org.json.JSONArray;
@@ -70,8 +69,8 @@ public class MainPresenterImpl implements MainPresenter, MainInteractorImpl.Main
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject station = jsonArray.getJSONObject(i);
                 AQStation aqStation = new AQStation();
+                aqStation.setSiteNumber(i);
                 aqStation.setSiteName(station.getString("SiteName"));
-                aqStation.setEngSiteName(Utilities.getEngSiteName(mContext, station.getString("SiteName")));
                 aqStation.setCounty(station.getString("County"));
                 aqStation.setPM25(station.getString("PM2.5"));
                 aqStation.setPublishTime(station.getString("PublishTime"));
