@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements MainView, AQStati
             //Update tabs
             TabLayout.Tab tab0 = mTabLayout.getTabAt(0);
             TabLayout.Tab tab1 = mTabLayout.getTabAt(1);
-            tab0.setText(PreferenceManager.getDefaultSharedPreferences(this).getString(this.getString(R.string.pref_key_county), this.getString(R.string.pref_county_taipei_city)));
+            tab0.setText(Utilities.getTabTitle(this));
             tab1.setText(PreferenceManager.getDefaultSharedPreferences(this).getString(this.getString(R.string.pref_key_secondary_county), this.getString(R.string.pref_county_taipei_city)));
         }
     }
@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity implements MainView, AQStati
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return PreferenceManager.getDefaultSharedPreferences(mContext).getString(mContext.getString(R.string.pref_key_county), mContext.getString(R.string.pref_county_taipei_city));
+                    return Utilities.getTabTitle(mContext);
                 case 1:
                     return PreferenceManager.getDefaultSharedPreferences(mContext).getString(mContext.getString(R.string.pref_key_secondary_county), mContext.getString(R.string.pref_county_taipei_city));
                 default:
