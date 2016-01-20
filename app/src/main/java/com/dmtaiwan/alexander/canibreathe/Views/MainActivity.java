@@ -3,6 +3,7 @@ package com.dmtaiwan.alexander.canibreathe.Views;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -89,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements MainView, AQStati
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -197,8 +199,14 @@ public class MainActivity extends AppCompatActivity implements MainView, AQStati
 
         @Override
         public CharSequence getPageTitle(int position) {
-            String[] titleArray = mContext.getResources().getStringArray(R.array.tab_titles);
-            return titleArray[position];
+            switch (position) {
+                case 0:
+                    return PreferenceManager.getDefaultSharedPreferences(mContext).getString(mContext.getString(R.string.pref_key_county), mContext.getString(R.string.pref_county_taipei_city));
+                case 1:
+                    return PreferenceManager.getDefaultSharedPreferences(mContext).getString(mContext.getString(R.string.pref_key_secondary_county), mContext.getString(R.string.pref_county_taipei_city));
+                default:
+                    return null;
+            }
         }
 
     }

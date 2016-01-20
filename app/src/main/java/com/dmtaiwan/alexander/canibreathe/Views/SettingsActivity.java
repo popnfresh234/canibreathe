@@ -26,6 +26,7 @@ public class SettingsActivity extends PreferenceActivity implements Preference.O
 
         bindPreferenceSummary(findPreference(getString(R.string.pref_key_county)));
         bindPreferenceSummary(findPreference(getString(R.string.pref_key_secondary_county)));
+        bindPreferenceSummary(findPreference(getString(R.string.pref_key_language)));
     }
 
     @Override
@@ -63,6 +64,15 @@ public class SettingsActivity extends PreferenceActivity implements Preference.O
             //Language has been changed
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
             String language = prefs.getString(getString(R.string.pref_key_secondary_county), getString(R.string.pref_county_taipei_city));
+            SettingsEvent event = new SettingsEvent();
+            EventBus.getInstance().post(event);
+            finish();
+        }
+
+        if (key.equals(getString(R.string.pref_key_language))) {
+            //Language has been changed
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            String language = prefs.getString(getString(R.string.pref_key_language), getString(R.string.pref_language_eng));
             SettingsEvent event = new SettingsEvent();
             EventBus.getInstance().post(event);
             finish();

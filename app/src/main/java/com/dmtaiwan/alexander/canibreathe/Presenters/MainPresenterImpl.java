@@ -13,6 +13,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -70,6 +71,16 @@ public class MainPresenterImpl implements MainPresenter, MainInteractorImpl.Main
                 JSONObject station = jsonArray.getJSONObject(i);
                 AQStation aqStation = new AQStation();
                 aqStation.setSiteName(station.getString("SiteName"));
+                //Find eng site name
+                String[] array = mContext.getResources().getStringArray(R.array.pref_county_values);
+                for (String site : array) {
+                    if (site == station.getString("SiteName")) {
+                        int j = Arrays.asList(array).indexOf(site);
+                        String engSite = Arrays.asList(mContext.getResources().getStringArray(R.array.pref_county_options)).get(j);
+                        aqStation.setEngSiteName(engSite);
+                    }
+                }
+
                 aqStation.setCounty(station.getString("County"));
                 aqStation.setPM25(station.getString("PM2.5"));
                 aqStation.setPublishTime(station.getString("PublishTime"));

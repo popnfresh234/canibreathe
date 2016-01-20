@@ -11,6 +11,7 @@ public class AQStation implements Parcelable {
     }
 
     private String SiteName;
+    private String EngSiteName;
     private String County;
     private String PSI;
     private String MajorPollutant;
@@ -34,6 +35,14 @@ public class AQStation implements Parcelable {
 
     public void setSiteName(String SiteName) {
         this.SiteName = SiteName;
+    }
+
+    public String getEngSiteName() {
+        return EngSiteName;
+    }
+
+    public void setEngSiteName(String SiteName) {
+        this.EngSiteName = SiteName;
     }
 
     public String getCounty() {
@@ -168,6 +177,7 @@ public class AQStation implements Parcelable {
 
     protected AQStation(Parcel in) {
         SiteName = in.readString();
+        EngSiteName = in.readString();
         County = in.readString();
         PSI = in.readString();
         MajorPollutant = in.readString();
@@ -194,6 +204,7 @@ public class AQStation implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(SiteName);
+        dest.writeString(EngSiteName);
         dest.writeString(County);
         dest.writeString(PSI);
         dest.writeString(MajorPollutant);

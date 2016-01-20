@@ -15,4 +15,12 @@
         android:entryValues="@array/pref_county_values"
         android:key="@string/pref_key_secondary_county"
         android:title="@string/pref_secondary_county_label" />
+
+    <ListPreference
+        android:defaultValue="@string/pref_language_eng"
+        android:entries="@array/pref_language_options"
+        android:entryValues="@array/pref_language_values"
+        android:key="@string/pref_key_language"
+        android:title="@string/pref_language_label"
+        />
 </PreferenceScreen>

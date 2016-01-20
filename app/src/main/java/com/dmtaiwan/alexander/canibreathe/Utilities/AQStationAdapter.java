@@ -1,6 +1,7 @@
 package com.dmtaiwan.alexander.canibreathe.Utilities;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -45,12 +46,23 @@ public class AQStationAdapter extends RecyclerView.Adapter<AQStationAdapter.View
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+        String language = prefs.getString(mContext.getString(R.string.pref_key_language), mContext.getString(R.string.pref_language_eng));
+
         AQStation aqStation = mStationList.get(position);
         String pm25String = Utilities.aqiCalc(aqStation.getPM25());
         holder.mPm25Text.setText(pm25String);
         holder.mPm25Text.setTextColor(Utilities.getTextColor(pm25String, mContext));
         holder.mPm25Text.setBackground(Utilities.getAqiBackground(pm25String, mContext));
-        holder.mStationName.setText(aqStation.getSiteName());
+
+
+        if (language == mContext.getString(R.string.pref_language_zh)) {
+            holder.mStationName.setText(aqStation.getSiteName());
+        }
+
+        if (language == mContext.getString(R.string.pref_language_eng)) {
+            holder.mStationName.setText(aqStation.getEngSiteName());
+        }
         holder.mWindSpeed.setText(Utilities.formatWindSpeed(aqStation.getWindSpeed()));
         holder.mTime.setText(Utilities.formatTime(aqStation.getPublishTime()));
     }
