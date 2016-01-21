@@ -1,6 +1,7 @@
 package com.dmtaiwan.alexander.canibreathe.Presenters;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.dmtaiwan.alexander.canibreathe.Models.AQStation;
 import com.dmtaiwan.alexander.canibreathe.Models.MainInteractor;
@@ -71,6 +72,9 @@ public class MainPresenterImpl implements MainPresenter, MainInteractorImpl.Main
                 AQStation aqStation = new AQStation();
                 aqStation.setSiteNumber(i);
                 aqStation.setSiteName(station.getString("SiteName"));
+
+                Log.i("Station Number Test", station.getString("SiteName")+ " "+ "station" + String.valueOf(i));
+
                 aqStation.setCounty(station.getString("County"));
                 aqStation.setPM25(station.getString("PM2.5"));
                 aqStation.setPublishTime(station.getString("PublishTime"));

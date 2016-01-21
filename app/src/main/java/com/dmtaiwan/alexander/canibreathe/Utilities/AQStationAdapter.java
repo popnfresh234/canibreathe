@@ -64,6 +64,7 @@ public class AQStationAdapter extends RecyclerView.Adapter<AQStationAdapter.View
             int id = mContext.getResources().getIdentifier("station" + String.valueOf(aqStation.getSiteNumber()), "string", mContext.getPackageName());
             String name = mContext.getResources().getString(id);
             Log.i(LOG_TAG, name);
+            Log.i(LOG_TAG, String.valueOf(aqStation.getSiteNumber()));
             holder.mStationName.setText(mContext.getResources().getString(id));
         }
         holder.mWindSpeed.setText(Utilities.formatWindSpeed(aqStation.getWindSpeed()));

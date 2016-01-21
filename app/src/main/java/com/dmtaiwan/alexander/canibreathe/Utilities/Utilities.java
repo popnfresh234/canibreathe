@@ -297,18 +297,37 @@ public class Utilities {
         return chartData;
     }
 
-    public static String getTabTitle(Context context) {
-        if (PreferenceManager.getDefaultSharedPreferences(context).getString(context.getString(R.string.pref_key_language), context.getString(R.string.pref_language_eng)).equals(context.getString(R.string.pref_language_zh))) {
-            return PreferenceManager.getDefaultSharedPreferences(context).getString(context.getString(R.string.pref_key_county), context.getString(R.string.pref_county_taipei_city));
-        }else if (PreferenceManager.getDefaultSharedPreferences(context).getString(context.getString(R.string.pref_key_language), context.getString(R.string.pref_language_eng)).equals(context.getString(R.string.pref_language_eng))) {
-            String[] keyArray = context.getResources().getStringArray(R.array.pref_county_values);
-            List<String> keyArrayList = Arrays.asList(keyArray);
-            if (keyArrayList.contains(PreferenceManager.getDefaultSharedPreferences(context).getString(context.getString(R.string.pref_key_county), context.getString(R.string.pref_county_taipei_city)))) {
-                int number = keyArrayList.indexOf(PreferenceManager.getDefaultSharedPreferences(context).getString(context.getString(R.string.pref_key_county), context.getString(R.string.pref_county_taipei_city)));
-                String[] labelsArray = context.getResources().getStringArray(R.array.pref_county_options);
-               List<String> labelArray = Arrays.asList(labelsArray);
-                return labelArray.get(number);
-            }else return null;
-        }else return null;
+    public static String getTabTitle(Context context, int tab) {
+        String languagePref = PreferenceManager.getDefaultSharedPreferences(context).getString(context.getString(R.string.pref_key_language), context.getString(R.string.pref_language_eng));
+        switch (tab) {
+            case 0:
+                if (languagePref.equals(context.getString(R.string.pref_language_zh))) {
+                    return PreferenceManager.getDefaultSharedPreferences(context).getString(context.getString(R.string.pref_key_county), context.getString(R.string.pref_county_taipei_city));
+                } else if (languagePref.equals(context.getString(R.string.pref_language_eng))) {
+                    String[] keyArray = context.getResources().getStringArray(R.array.pref_county_values);
+                    List<String> keyArrayList = Arrays.asList(keyArray);
+                    if (keyArrayList.contains(PreferenceManager.getDefaultSharedPreferences(context).getString(context.getString(R.string.pref_key_county), context.getString(R.string.pref_county_taipei_city)))) {
+                        int number = keyArrayList.indexOf(PreferenceManager.getDefaultSharedPreferences(context).getString(context.getString(R.string.pref_key_county), context.getString(R.string.pref_county_taipei_city)));
+                        String[] labelsArray = context.getResources().getStringArray(R.array.pref_county_options);
+                        List<String> labelArray = Arrays.asList(labelsArray);
+                        return labelArray.get(number);
+                    } else return null;
+                }
+            case 1:
+                if (languagePref.equals(context.getString(R.string.pref_language_zh))) {
+                    return PreferenceManager.getDefaultSharedPreferences(context).getString(context.getString(R.string.pref_key_secondary_county), context.getString(R.string.pref_county_taipei_city));
+                } else if (languagePref.equals(context.getString(R.string.pref_language_eng))) {
+                    String[] keyArray = context.getResources().getStringArray(R.array.pref_county_values);
+                    List<String> keyArrayList = Arrays.asList(keyArray);
+                    if (keyArrayList.contains(PreferenceManager.getDefaultSharedPreferences(context).getString(context.getString(R.string.pref_key_secondary_county), context.getString(R.string.pref_county_taipei_city)))) {
+                        int number = keyArrayList.indexOf(PreferenceManager.getDefaultSharedPreferences(context).getString(context.getString(R.string.pref_key_secondary_county), context.getString(R.string.pref_county_taipei_city)));
+                        String[] labelsArray = context.getResources().getStringArray(R.array.pref_county_options);
+                        List<String> labelArray = Arrays.asList(labelsArray);
+                        return labelArray.get(number);
+                    } else return null;
+                }
+            default:
+                return null;
+        }
     }
 }
