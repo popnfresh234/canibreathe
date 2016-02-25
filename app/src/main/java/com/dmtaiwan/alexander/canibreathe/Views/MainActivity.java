@@ -65,21 +65,12 @@ public class MainActivity extends AppCompatActivity implements MainView, AQStati
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         EventBus.getInstance().register(this);
-
-
         mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), this);
         mViewPager.setAdapter(mPagerAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
-
-
         //ActionBar
         setSupportActionBar(mToolbar);
-
         mPresenter = new MainPresenterImpl(this, this);
-        if (mPresenter != null) {
-            mPresenter.requestAQData();
-            Log.i(LOG_TAG, "onCreate update");
-        }
     }
 
 
@@ -122,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements MainView, AQStati
 
     @Override
     public void onDataReturned(List<AQStation> aqStationList) {
+        Log.i(LOG_TAG + " onDataReturned", String.valueOf(aqStationList.size()));
         AQStationListFragment fragment = (AQStationListFragment) mPagerAdapter.instantiateItem(mViewPager, 0);
         AQStationListFragment secondaryFragment = (AQStationListFragment) mPagerAdapter.instantiateItem(mViewPager, 1);
         fragment.setData(aqStationList);
@@ -175,6 +167,13 @@ public class MainActivity extends AppCompatActivity implements MainView, AQStati
         startActivity(intent);
     }
 
+    public void requestData() {
+        if (mPresenter != null) {
+            mPresenter.requestAQData();
+            Log.i(LOG_TAG, "onCreate update");
+        }
+    }
+
     public static class PagerAdapter extends FragmentPagerAdapter {
         private static int NUM_ITEMS = 2;
         private Context mContext;
@@ -215,4 +214,5 @@ public class MainActivity extends AppCompatActivity implements MainView, AQStati
         }
 
     }
+
 }

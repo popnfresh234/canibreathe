@@ -55,19 +55,19 @@ public class AQStationListFragment extends Fragment {
         Bundle args = getArguments();
         int page = args.getInt("pageInt");
         //        Set Layout Manager
+
         mAdapter = new AQStationAdapter(getActivity(), mEmptyView, (MainActivity)getActivity(), page);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(llm);
-
         mRecyclerView.setAdapter(mAdapter);
+        ((MainActivity) getActivity()).requestData();
         return rootView;
     }
 
     public void setData(List<AQStation> aqStationList) {
         if (mAdapter != null) {
-            mAdapter.udpateData(aqStationList);
+            mAdapter.updateData(aqStationList);
         }
-
     }
 }

@@ -109,7 +109,7 @@ public class AQStationAdapter extends RecyclerView.Adapter<AQStationAdapter.View
         }
     }
 
-    public void udpateData(List<AQStation> stationList) {
+    public void updateData(List<AQStation> stationList) {
         Log.i(LOG_TAG, "updating data");
         mStationList = sortStations(stationList, mPage);
         notifyDataSetChanged();
