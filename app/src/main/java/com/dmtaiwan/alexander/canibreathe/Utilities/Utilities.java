@@ -39,6 +39,7 @@ public class Utilities {
 
     //Intent extras
     public static final String EXTRA_AQ_STATION = "com.dmtaiwan.alexander.canibreathe.aqstation";
+    public static final String EXTRA_AQ_STATIONS_LIST = "com.dmtaiwan.alexander.canibreathe.aqstationslist";
 
     static public boolean isNetworkAvailable(Context c) {
         ConnectivityManager cm =

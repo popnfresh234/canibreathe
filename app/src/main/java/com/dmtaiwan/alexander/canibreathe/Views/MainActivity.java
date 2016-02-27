@@ -28,6 +28,7 @@ import com.dmtaiwan.alexander.canibreathe.Utilities.AQStationAdapter;
 import com.dmtaiwan.alexander.canibreathe.Utilities.Utilities;
 import com.squareup.otto.Subscribe;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -161,9 +162,11 @@ public class MainActivity extends AppCompatActivity implements MainView, AQStati
 
 
     @Override
-    public void onRecyclerClick(AQStation aqStation) {
+    public void onRecyclerClick(AQStation aqStation, List<AQStation> aqStationsList) {
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra(Utilities.EXTRA_AQ_STATION, aqStation);
+        ArrayList<AQStation> parcelableList = new ArrayList<AQStation>(aqStationsList);
+        intent.putParcelableArrayListExtra(Utilities.EXTRA_AQ_STATIONS_LIST, parcelableList);
         startActivity(intent);
     }
 

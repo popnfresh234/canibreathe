@@ -105,7 +105,7 @@ public class AQStationAdapter extends RecyclerView.Adapter<AQStationAdapter.View
         public void onClick(View v) {
             int position = getAdapterPosition();
             AQStation aqStation = mStationList.get(position);
-            mListener.onRecyclerClick(aqStation);
+            mListener.onRecyclerClick(aqStation, mStationList);
         }
     }
 
@@ -117,7 +117,7 @@ public class AQStationAdapter extends RecyclerView.Adapter<AQStationAdapter.View
     }
 
     public interface RecyclerClickListener {
-        void onRecyclerClick(AQStation aqStation);
+        void onRecyclerClick(AQStation aqStation, List<AQStation> aqStationList);
     }
 
 
