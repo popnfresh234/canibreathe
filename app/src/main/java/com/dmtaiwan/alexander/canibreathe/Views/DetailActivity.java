@@ -50,8 +50,12 @@ public class DetailActivity extends AppCompatActivity {
         Log.i("Test", String.valueOf(mAQStationsSorted.size()));
         mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), this, mAQStationsSorted);
         mViewPager.setAdapter(mPagerAdapter);
-
-
+        for (int i = 0; i < mAQStationsSorted.size(); i++) {
+            AQStation station = mAQStationsSorted.get(i);
+            if (station.getSiteNumber() == mCurrentAQStation.getSiteNumber()) {
+                mViewPager.setCurrentItem(i);
+            }
+        }
     }
 
     public static class PagerAdapter extends FragmentPagerAdapter {
